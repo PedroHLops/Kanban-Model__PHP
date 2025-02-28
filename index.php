@@ -41,7 +41,7 @@ if(isset($routes[$method][$uri])) {
                 $data["term"] ?? '');
             }
         
-            echo json_encode($projectController->register($project));
+            echo json_encode($proectController->register($project));
             exit;
     }
 
