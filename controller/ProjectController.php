@@ -14,11 +14,30 @@
             $this-> projectRepository->__registerProject($project);
 
             if (empty($dataProjects->getName())) {
-                $response = Handlers::error($project, 'Erro ao cadastrar o projeto', 400);
-                return $response;
+                return Handlers::error($project, 'Erro ao cadastrar o projeto', 400);
             }
 
-            return Handlers::sucess($dataProjects, 'Projeto cadatrado com sucesso', 200);
+            return Handlers::sucess($dataProjects, 'Projeto cadatrado com sucesso', 201);
+        }
+
+        public function filterStatusTrue() {
+            $this->projectRepository->__findAllByStatusTrue();
+            
+            return [json_encode($this->projectRepository->__findAllByStatusTrue()), Handlers::sucess($this->projectRepository, '', 200)];
+        }
+
+        public function updateProject(DataUpdateProject $dataUpdateProject){
+            $update =  $this->projectRepository->__findById($dataUpdateProject->getId());
+            
+            if($update){
+                $update->update($dataUpdateProject);
+                $this->projectRepository->__updateProject($update, $dataUpdateProject->getId());
+
+                return json_encode([Handlers::sucess($dataUpdateProject, 'Projeto atualizado com sucesso', 200)]);                
+            } else{
+                
+                return [Handlers::error(null, 'Projeto não encontrado', 404)];
+            }
         }
     }
-?>
+?>  

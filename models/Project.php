@@ -1,15 +1,13 @@
 <?PHP
     class Project{
         public function __construct($name, $description, $team, $term){
-            $this->status = true;
+            $this->status = 'true';
             $this->name = $name;
             $this->description = $description;
             $this->created_at = date('d/m/y');
             $this->team = $team;
             $this->term = $term;
-
         }
-
 
         private $id;
         private $name;
@@ -20,10 +18,10 @@
         private $term;
         private $leader;
 
-        public function getid($id): mixed{
-            return $this->id = $id;
+        public function getId(): mixed{
+            return $this->id;
         }
-        function setid($id): void{
+        function setId($id): void{
             $this->id = $id;
         }
 
@@ -69,12 +67,19 @@
             $this->term = $term;
         }
 
-        function getLeader(){
+        function getLeader(): mixed{
             return $this->leader;
         }
         function setLeader($leader): void{
             $this->leader = $leader;
         }
         
+
+        public function update(DataUpdateProject $dataUpdateProject) {
+            $this->name = $dataUpdateProject->getName();
+            $this->description = $dataUpdateProject->getDescription();
+            $this->team = $dataUpdateProject->getTeam();
+            $this->term = $dataUpdateProject->getTerm();
+        }
     }
 ?>

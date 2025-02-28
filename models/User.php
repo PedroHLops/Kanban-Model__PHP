@@ -1,12 +1,12 @@
 <?php
     class User {
-        function __construct($id, $name, $password, $email) {   
-            $user = new User($id,
-                           $name,
-                       $password,
-                          $email);
-                          
-            $this->user = $user;
+        public function __construct($id, $name, $password, $email, $permisson, $status) {   
+            $this->id = $id;
+            $this->name = $name;
+            $this->password = $password;
+            $this->email = $email;
+            $this->permisson = $permisson;
+            $this->status = 1;
         }
 
         private $id;
@@ -14,43 +14,49 @@
         private $email;
         private $password;
         private $permisson;
+        private $status;
 
-
-        function getId() {
+        public function getId() {
             return $this->id;
         }
-        function setId($id) {   
+        public function setId($id) {   
             $this->$id = $id;
         }
 
-        function getName() {   
+        public function getName() {   
             return $this->name;
         }
-        function setName($name) {
+        public function setName($name) {
             $this->$name = $name;
         }
 
-        function getEmail() {
+        public function getEmail() {
             return $this->email;
         }
-        function setEmail($email) {
+        public function setEmail($email) {
             $this->$email = $email;
         }
 
-        function getPassword() {
+        public function getPassword() {
             return $this->password;
         }
-        function setPassword($password) {
+        public function setPassword($password) {
             $this->$password = $password;
         }
 
-        function getPermisson() {
+        public function getPermisson() {
             return $this->permisson;
         }
-        function setPermisson($permisson) {
+        public function setPermisson($permisson) {
             $this->$permisson = $permisson;
         }
 
+        public function getStatus() {
+            return $this->status;
+        }
+        public function setStatus($status) {
+            $this->$status = $status;
+        }
         
     }
 ?>
